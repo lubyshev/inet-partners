@@ -5,17 +5,7 @@ defined( 'DOCROOT') || define( 'DOCROOT', dirname( __FILE__));
 spl_autoload_register( function( $className) {
   $result = true;
   $fileName = DOCROOT . DIRECTORY_SEPARATOR .
-    preg_replace(
-      [
-        '~^\\\~',
-        '~^(Seotils)~',
-        '~\\\~'
-      ], [
-        '',
-        'src',
-        DIRECTORY_SEPARATOR
-      ], $className) .
-      '.php';
+    preg_replace( '~\\\~', DIRECTORY_SEPARATOR, $className) . '.php';
   if( file_exists( $fileName )) {
   	require_once( $fileName );
   } else {
